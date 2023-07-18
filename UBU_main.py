@@ -951,6 +951,291 @@ print('loglevel' in config.__dict__)
 print('version' in config.__dict__)"""
 
 
+"""class Vector:
+
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __repr__(self):
+        return f'Vector({self.x}, {self.y})'
+
+    def __eq__(self, other):
+        if isinstance(other, Vector):
+            return self.x == other.x and self.y == other.y
+        elif type(other) == tuple and len(other) == 2:
+            return self.x == other[0] and self.y == other[1]
+        else:
+            return NotImplemented
+
+
+
+vectors = [Vector(196, 21), Vector(102, 82), Vector(91, 28), Vector(137, 128), Vector(97, 69), Vector(79, 29), Vector(93, 62), Vector(85, 58), Vector(46, 176), Vector(84, 197)]
+pairs = [(26, 86), (177, 150), (144, 175), (137, 128), (110, 196), (79, 29), (93, 62), (36, 158), (180, 24), (84, 167)]
+
+for vector, pair in zip(vectors, pairs):
+    print(vector == pair, vector != pair)"""
+
+
+"""from functools import total_ordering
+
+@total_ordering
+class Word:
+
+    def __init__(self, word):
+        self.word = word
+
+    def __repr__(self):
+        return f'Word(\'{self.word}\')'
+
+    def __str__(self):
+        return f'{self.word.capitalize()}'
+
+    def __eq__(self, other):
+        if isinstance(other, Word):
+            return len(self.word) == len(other.word)
+        return NotImplemented
+
+    def __lt__(self, other):
+        if isinstance(other, Word):
+            return len(self.word) < len(other.word)
+        return NotImplemented
+
+
+words = [Word('python'), Word('bee'), Word('geek')]
+
+print(sorted(words))
+print(min(words))
+print(max(words))"""
+
+
+
+"""from functools import total_ordering
+
+@total_ordering
+class Month:
+
+    def __init__(self, year, month):
+        self.year = year
+        self.month = month
+
+    def __repr__(self):
+        return f'Month({self.year}, {self.month})'
+
+    def __str__(self):
+        return f'{self.year}-{self.month}'
+
+    def __eq__(self, other):
+        if isinstance(other, Month):
+            return self.year == other.year and self.month == other.month
+        elif type(other) == tuple and len(other) == 2:
+            return self.year == other[0] and self.month == other[1]
+        return NotImplemented
+
+    def __lt__(self, other):
+        if isinstance(other, Month):
+            if self.year < other.year: #and self.month < other.month
+                return True
+            elif self.year == other.year:
+                if self.month == other.month:
+                    return False
+                elif self.month < other.month:
+                    return True
+            else:
+                return False
+
+        elif type(other) == tuple and len(other) == 2:
+            if self.year < other[0]:
+                return True
+            elif self.year == other[0]:
+                if self.month == other[1]:
+                    return False
+                elif self.month < other[1]:
+                    return True
+            else:
+                return False
+        return NotImplemented
+
+
+month = Month(2023, 4)
+
+print(month.__eq__(1))
+print(month.__ne__(1.1))
+print(month.__gt__(range(5)))
+print(month.__lt__([1, 2, 3]))
+print(month.__ge__({4, 5, 6}))
+print(month.__le__({1: 'one'}))"""
+
+
+"""from functools import total_ordering
+
+@total_ordering
+class Version:
+
+    def __init__(self, version):
+        self.version = str(version)
+
+    def __repr__(self):
+        if len(self.version) == 5:
+            return f'Version(\'{self.version}\')'
+        elif len(self.version) == 3:
+            return f'Version(\'{self.version}.0\')'
+        elif len(self.version) == 1:
+            return f'Version(\'{self.version}.0.0\')'
+
+    def __str__(self):
+        if len(self.version) == 5:
+            return f'{self.version}'
+        elif len(self.version) == 3:
+            return f'{self.version}.0'
+        elif len(self.version) == 1:
+            return f'{self.version}.0.0'
+
+    def __eq__(self, other):
+        if isinstance(other, Version):
+            version_self = self.version.replace('.', '') #self.version.replace('.', '')
+            version_other = other.version.replace('.', '') #other.version.replace('.', '')
+
+            def __new_version_self(version_self):
+                if len(version_self) == 1:
+                    new_version_self = f'{version_self}00'
+                    return new_version_self
+                elif len(version_self) == 2:
+                    new_version_self = f'{version_self}0'
+                    return new_version_self
+                else:
+                    return version_self
+
+            full_new_version = __new_version_self(version_self) # функция добавляющая нули, если их недостаточно
+
+            def __new_version_other(version_other):
+                if len(version_other) == 1:
+                    new_version_self = f'{version_other}00'
+                    return new_version_self
+                elif len(version_other) == 2:
+                    new_version_self = f'{version_other}0'
+                    return new_version_self
+                else:
+                    return version_other
+
+            full_new_version_other = __new_version_other(version_other)  # функция добавляющая нули, если их недостаточно
+
+
+            if int(full_new_version[0]) == int(full_new_version_other[0]):
+                return True
+            elif int(full_new_version[1]) == int(full_new_version_other[1]):
+                return True
+            elif int(full_new_version[2]) == int(full_new_version_other[2]):
+                return True
+            else:
+                return False
+        return NotImplemented
+
+    def __lt__(self, other):
+        if isinstance(other, Version):
+            version_self = self.version.replace('.', '')
+            version_other = other.version.replace('.', '')
+
+            def __new_version_self(version_self):
+                if len(version_self) == 1:
+                    new_version_self = f'{version_self}00'
+                    return new_version_self
+                elif len(version_self) == 2:
+                    new_version_self = f'{version_self}0'
+                    return new_version_self
+                else:
+                    return version_self
+
+            full_new_version = __new_version_self(version_self) # функция добавляющая нули, если их недостаточно
+
+            def __new_version_other(version_other):
+                if len(version_other) == 1:
+                    new_version_self = f'{version_other}00'
+                    return new_version_self
+                elif len(version_other) == 2:
+                    new_version_self = f'{version_other}0'
+                    return new_version_self
+                else:
+                    return version_other
+
+            full_new_version_other = __new_version_other(version_other)  # функция добавляющая нули, если их недостаточно
+
+            #-----------------------------------------------------------------------------------
+
+            if int(full_new_version[0]) < int(full_new_version_other[0]):
+                return True
+            elif int(full_new_version[1]) < int(full_new_version_other[1]):
+                return True
+            elif int(full_new_version[2]) < int(full_new_version_other[2]):
+                return True
+            else:
+                return False
+        return NotImplemented
+
+
+
+versions = [Version('2'), Version('2.1'), Version('1.9.1')]
+
+print(sorted(versions))
+print(min(versions))
+print(max(versions))"""
+
+
+class Version:
+    def __init__(self, version):
+        self.version = version.split('.')
+        self.version = [int(num) if num else 0 for num in self.version]
+
+    def __str__(self):
+        return '.'.join(str(num) for num in self.version)
+
+    def __repr__(self):
+        return f"Version('{str(self)}')"
+
+    def __eq__(self, other):
+        if isinstance(other, Version):
+            return self.version == other.version
+        return NotImplemented
+
+    def __ne__(self, other):
+        if isinstance(other, Version):
+            return self.version != other.version
+        return NotImplemented
+
+    def __gt__(self, other):
+        if isinstance(other, Version):
+            return self.version > other.version
+        return NotImplemented
+
+    def __lt__(self, other):
+        if isinstance(other, Version):
+            return self.version < other.version
+        return NotImplemented
+
+    def __ge__(self, other):
+        if isinstance(other, Version):
+            return self.version >= other.version
+        return NotImplemented
+
+    def __le__(self, other):
+        if isinstance(other, Version):
+            return self.version <= other.version
+        return NotImplemented
+
+versions = [Version('2'), Version('2.1'), Version('1.9.1')]
+
+print(sorted(versions))
+print(min(versions))
+print(max(versions))
+
+
+
+
+
+
+
+
+
 
 
 
