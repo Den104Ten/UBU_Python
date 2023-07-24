@@ -1181,7 +1181,7 @@ print(min(versions))
 print(max(versions))"""
 
 
-class Version:
+"""class Version:
     def __init__(self, version):
         self.version = version.split('.')
         self.version = [int(num) if num else 0 for num in self.version]
@@ -1226,9 +1226,70 @@ versions = [Version('2'), Version('2.1'), Version('1.9.1')]
 
 print(sorted(versions))
 print(min(versions))
-print(max(versions))
+print(max(versions))"""
+
+"""from math import sqrt
+
+class Vector:
+
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __str__(self):
+        return f'({self.x}, {self.y})'
+
+    def __bool__(self):
+        return self.x != 0 or self.y != 0
+
+    def __int__(self):
+        return int(sqrt((self.x**2) + (self.y**2)))
+
+    def __float__(self):
+        return float(sqrt((self.x**2) + (self.y**2)))
+
+    def __complex__(self):
+        return complex(self.x, self.y)
 
 
+
+print(bool(Vector(1, 2)))
+print(bool(Vector(1, 0)))
+print(bool(Vector(0, 1)))
+print(bool(Vector(0, 0)))"""
+
+
+"""class Temperature:
+
+    def __init__(self, temperature):
+        self.temperature = temperature
+
+    def __bool__(self):
+        return self.temperature > 0
+
+    def __int__(self):
+        return int(self.temperature)
+
+    def __float__(self):
+        return float(self.temperature)
+
+    def __str__(self):
+        return f'{round(self.temperature, 2)}°C'
+
+    def to_fahrenheit(self):
+        return self.temperature * (9 / 5) + 32
+
+    @classmethod
+    def from_fahrenheit(cls, temperature):
+        return (cls((temperature - 32) * (5 / 9)))
+
+
+t = Temperature.from_fahrenheit(41)
+
+print(t)
+print(int(t))
+print(float(t))
+print(t.to_fahrenheit())"""
 
 
 
