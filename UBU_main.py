@@ -1292,6 +1292,131 @@ print(float(t))
 print(t.to_fahrenheit())"""
 
 
+"""class Point:
+
+    def __init__(self, x, y, z):
+        self.x = x
+        self.y = y
+        self.z = z
+        self.lst_cart = (x, y, z)
+
+    def __repr__(self):
+        return f'Point({self.x}, {self.y}, {self.z})'
+
+    def __iter__(self):
+        yield from self.lst_cart
+
+
+point = Point(1, 2, 3)
+x, y, z = point
+
+print(x, y, z)"""
+
+
+"""class DevelopmentTeam:
+
+    def __init__(self):
+        self.lst_jun = []
+        self.lst_sen = []
+
+    def __iter__(self):
+        yield from self.lst_jun
+        yield from self.lst_sen
+
+    def add_junior(self, *args):
+        for i in args:
+            self.lst_jun.append((i, 'junior'))
+
+    def add_senior(self, *args):
+        for i in args:
+            self.lst_sen.append((i, 'senior'))
+
+
+beegeek = DevelopmentTeam()
+
+beegeek.add_junior('Timur')
+beegeek.add_junior('Arthur', 'Valery')
+print(*beegeek, sep='\n')"""
+
+
+"""class AttrsIterator:
+
+    def __init__(self, obj):
+        self.obj = obj
+        self.attrs = list(obj.__dict__.items())
+        self.index = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.index >= len(self.attrs):
+            raise StopIteration
+        red = self.attrs[self.index]
+        self.index += 1
+        return red
+
+class User:
+    def __init__(self, name, surname, age):
+        self.name = name
+        self.surname = surname
+        self.age = age
+
+user = User('Debbie', 'Harry', 77)
+attrsiterator = AttrsIterator(user)
+
+print(*attrsiterator)"""
+
+
+"""class SkipIterator:
+
+    def __init__(self, iterable, n):
+        self.iterable = list(iterable)
+        self.n = n
+        self.index = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.index >= len(self.iterable):
+            raise StopIteration
+        reg = self.iterable[self.index]
+        self.index += self.n + 1
+        return reg
+
+
+skipiterator = SkipIterator(iter([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), 5)
+
+print(*skipiterator)"""
+
+
+"""class RandomLooper:
+
+    def __init__(self, *args):
+        self.lst_args = []
+        for x in args:
+            self.lst_args.extend(x)
+        self.args = self.lst_args
+        self.index = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        size_args = len(self.args)
+        if self.index >= size_args:
+            raise StopIteration
+        res_elem = self.args[self.index]
+        self.index += 1
+        return res_elem
+
+randomlooper = RandomLooper(['red', 'blue', 'green', 'purple'])
+
+print(list(randomlooper))
+print(list(randomlooper))"""
+
+
 
 
 
