@@ -1,4 +1,5 @@
 from flask import Flask, redirect, url_for, render_template, request
+from flask_sqlalchemy import SQLAlchemy
 import sqlite3
 
 app = Flask(__name__)
@@ -7,7 +8,7 @@ conn = sqlite3.connect('users.db')
 c = conn.cursor()
 
 c.execute('''CREATE TABLE IF NOT EXISTS users
-             (username TEXT, password TEXT)''')
+             (username TEXT, password TEXT, email TEXT)''')
 
 conn.commit()
 conn.close()
@@ -18,11 +19,12 @@ def register():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        email = request.form['email']
 
         conn = sqlite3.connect("users.db")
         c = conn.cursor()
 
-        c.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, password))
+        c.execute("INSERT INTO users (username, password, email) VALUES (?, ?, ?)", (username, password, email))
 
         conn.commit()
         conn.close()
@@ -77,6 +79,6 @@ def login_incorrect():
     return render_template('login.html')
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
 
 
