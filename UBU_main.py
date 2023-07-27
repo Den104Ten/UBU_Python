@@ -1417,6 +1417,26 @@ print(list(randomlooper))
 print(list(randomlooper))"""
 
 
+"""def sort_array(source_array):
+    z_res = []
+    z_notodd = []
+    for value in source_array:
+        if value % 2 == 0:
+            z_res.append(value)
+        else:
+            z_res.append('f')
+            z_notodd.append(value)
+    z_notodd = sorted(z_notodd)
+    index_null = 0
+    for index, value in enumerate(z_res):
+        if value == 'f':
+            z_res[index] = z_notodd[index_null]
+            index_null += 1
+    return z_res
+
+
+print(sort_array([9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) == [1, 8, 3, 6, 5, 4, 7, 2, 9, 0])  # [3, 8, 6, 5, 4]"""
+
 
 
 

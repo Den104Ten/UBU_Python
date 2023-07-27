@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Не верные данные</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='login_incorrect.css') }}">
+</head>
+<body>
+<div class="login-box">  <!-- Над формой добавь что то типо Вход не удался неверные данные!, типо того -->
+  <form method="POST" action="/login">  <!-- Еще добавь вокруг всей формы тонкую красную окантовку -->
+    <div class="user-box">
+      <input type="text" id="username" name="username" required="">
+      <label for="username">Name:</label>
+    </div>
+    <div class="user-box">
+      <input type="password" id="password" name="password" required="">
+      <label for="password">Password:</label>
+    </div><center>
+    <a href="#">
+        Login
+        <input type="submit" value="хуй знает"> <!-- Разберись с этим моментом, input нужно оставить -->
+        <span></span>
+    </a></center>
+  </form>
+</div>
+</body>
+</html>
