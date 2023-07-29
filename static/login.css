@@ -1,3 +1,7 @@
+body {
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
 .login-box {
   position: absolute;
   top: 50%;
@@ -46,9 +50,11 @@
   font-size: 12px;
 }
 
-.login-box form a {
+.login-box form .login__submit {
   position: relative;
   display: inline-block;
+  border: 2px solid #03f40f;
+  border-radius: 5px;
   padding: 10px 20px;
   color: #ffffff;
   font-size: 16px;
@@ -60,7 +66,7 @@
   letter-spacing: 4px
 }
 
-.login-box a:hover {
+.login-box .login__submit:hover {
   background: #03f40f;
   color: #fff;
   border-radius: 5px;
@@ -92,4 +98,17 @@
   height: 2px;
   background: linear-gradient(90deg, transparent, #03f40f);
   animation: btn-anim1 2s linear infinite;
+}
+
+.login__submit {
+  border: none;
+  background-color: #151618;
+}
+
+.login__main-text {
+  position: relative;
+  bottom: 22px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
